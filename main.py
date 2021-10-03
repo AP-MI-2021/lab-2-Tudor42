@@ -75,6 +75,15 @@ def test_get_goldbach():
   
 
 def get_newton_sqrt(n, steps):
+  """
+  input:
+    n - numarul
+    steps - numarul de aproximari
+  output:
+    radical din n
+  """
+  if n < 0 or steps < 0:
+    return None
   x0 = 2
   while steps:
     x0 = 0.5 * (x0 + n/x0)
@@ -83,8 +92,23 @@ def get_newton_sqrt(n, steps):
 
 
 def test_get_newton_sqrt():
-  assert get_newton_sqrt(2, 5) == 1.414213562373095
-
+  print("Test sqrt of -1 with 2 aproximations")
+  assert get_newton_sqrt(-1, 2) == None
+  print("Test sqrt of 0 with 15 aproximations")
+  assert round(get_newton_sqrt(0, 15), 3) == 0.0
+  print("Test sqrt of 2 with 5 aproximations")
+  assert round(get_newton_sqrt(2, 5), 8) == 1.41421356
+  print("Test sqrt of 10 with 6 aproximations")
+  assert round(get_newton_sqrt(10, 6), 8) == 3.16227766
+  print("Test sqrt of 16 with 6 aproximations")
+  assert get_newton_sqrt(16, 6) == 4.0
+  print("Test sqrt of 32 with 6 aproximations")
+  assert round(get_newton_sqrt(32, 6), 8) == 5.65685425
+  print("Test sqrt of 1024 with 9 aproximations")
+  assert get_newton_sqrt(1024, 9) == 32.0
+  print("Test sqrt of 50000 with 11 aproximations")
+  assert round(get_newton_sqrt(50000, 11), 6) == 223.606798
+  print("Everything passed")
 
 def main():
   print('Scrie help pentru a vedea lista de comenzi')
@@ -104,6 +128,7 @@ def main():
     if command[0] == 'get_newton_sqrt':
       if len(command) < 3:
         print('prea putini argumenti')
+        continue
       try:
         steps = int(command[2])
       except:
