@@ -8,11 +8,11 @@ def is_prime(n):
     True  - n este prim
     False - n nu este prim
   """
-  if n < 2 or not n % 2:
-    return False
-
   if n == 2:
     return True
+
+  if n < 2 or not n % 2:
+    return False
 
   for i in range(3, n//2 + 1, 2):
     if n % i == 0:
